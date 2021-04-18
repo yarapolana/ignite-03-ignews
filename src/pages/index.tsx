@@ -21,7 +21,10 @@ export default function Home({ product }: HomeProps) {
       <main className={styles.main}>
         <section className={styles.hero}>
           <span>👏🏽 Hey, welcome</span>
-          <h1>News about <br />the <span>React</span> world</h1>
+          <h1>
+            News about <br />
+            the <span>React</span> world
+          </h1>
 
           <p>
             Get acess to all the publications
@@ -29,27 +32,15 @@ export default function Home({ product }: HomeProps) {
             <span>for {product.amount} month</span>
           </p>
 
-          <SubscribeButton priceId={product.id} />
+          <SubscribeButton />
         </section>
-        <img src="/images/avatar.svg" alt="Woman coding"/>
+        <img src="/images/avatar.svg" alt="Woman coding" />
       </main>
-
-      <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" />
-        </a>
-      </footer>
     </>
   )
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const price = await stripe.prices.retrieve('price_1IhIUjAVoSbVmTx4EIPMqND2', {
     expand: ['product'] // if you want more information about the product
   })
 
@@ -60,9 +51,9 @@ export const getStaticProps: GetStaticProps = async () => {
         amount: new Intl.NumberFormat('en-US', {
           style: 'currency',
           currency: 'USD'
-        }).format(price.unit_amount / 100),
+        }).format(price.unit_amount / 100)
       }
     },
-    revalidate: 60 * 60 * 24, // 24 hours
+    revalidate: 60 * 60 * 24 // 24 hours
   }
 }
