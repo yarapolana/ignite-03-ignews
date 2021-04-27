@@ -20,7 +20,7 @@ const buffer = async (readable: Readable) => {
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST')
-    return res.status(405).json('Method not allowed')
+    res.status(405).end('Method not allowed')
   }
 
   const bufferedReq = await buffer(req)
