@@ -31,7 +31,7 @@ export const saveSubscription = async (
 
   const subscriptionData = {
     id: subscription.id,
-    user: userRef,
+    userId: userRef,
     status: subscription.status,
     price_id: subscription.items.data[0].price.id
   }
