@@ -16,18 +16,18 @@ export const saveSubscription = async (
   { subscriptionId, customerId }: Subscription,
   isCreatingSubscription: boolean
 ) => {
-  const userRefPromise = fauna.query<UserRef>(
+  const userRef = await fauna.query<UserRef>(
     q.Select(
       'ref',
       q.Get(q.Match(q.Index('user_by_stripe_customer_id'), customerId))
     )
   )
-  const subscriptionPromise = stripe.subscriptions.retrieve(subscriptionId)
+  const subscription = await stripe.subscriptions.retrieve(subscriptionId)
 
-  const [userRef, subscription] = await Promise.all([
-    userRefPromise,
-    subscriptionPromise
-  ])
+  // const [userRef, subscription] = await Promise.all([
+  //   userRefPromise,
+  //   subscriptionPromise
+  // ])
 
   const subscriptionData = {
     id: subscription.id,
