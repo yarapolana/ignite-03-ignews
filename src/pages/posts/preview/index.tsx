@@ -58,14 +58,14 @@ export default function PostPreview({ post }: PostPreviewProps) {
             <h1>{post.title}</h1>
             <time>{post.updatedAt}</time>
           </header>
-
+          {/* 
           <Image
             src={post.thumbnail.url}
             width={post.thumbnail.dimensions.width}
             height={post.thumbnail.dimensions.height}
             alt={post.thumbnail.alt}
             objectFit="cover"
-          />
+          /> */}
 
           <div
             className={`${styles.postContent} ${styles.previewContent}`}
