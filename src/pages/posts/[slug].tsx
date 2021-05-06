@@ -31,8 +31,6 @@ type PostProps = {
 }
 
 export default function Post({ post }: PostProps) {
-  console.log(post)
-
   return (
     <>
       <Head>
@@ -71,8 +69,6 @@ export const getServerSideProps: GetServerSideProps<PostProps> = async ctx => {
 
   const session = await getSession({ req })
   const slug = String(params.slug)
-
-  console.log(session)
 
   // @ts-ignore
   if (!session.activeSubscription) {
