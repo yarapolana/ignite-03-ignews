@@ -20,7 +20,7 @@ type PostThumbnail = {
 
 type Post = {
   slug: string
-  thumbnail: PostThumbnail
+  thumbnail?: PostThumbnail
   title: string
   content: string
   updatedAt: string
@@ -71,7 +71,7 @@ export const getServerSideProps: GetServerSideProps<PostProps> = async ctx => {
   const slug = String(params.slug)
 
   // @ts-ignore
-  if (!session.activeSubscription) {
+  if (!session?.activeSubscription) {
     // alert("You don't have an active subscription")
     return {
       redirect: {
@@ -96,9 +96,9 @@ export const getServerSideProps: GetServerSideProps<PostProps> = async ctx => {
     },
     title: RichText.asText(data.title),
     content: RichText.asHtml(data.content),
-    updatedAt: new Date(last_publication_date).toLocaleDateString('pt-BR', {
+    updatedAt: new Date(last_publication_date).toLocaleDateString('en-UK', {
       day: '2-digit',
-      month: 'long',
+      month: 'numeric',
       year: 'numeric'
     })
   }

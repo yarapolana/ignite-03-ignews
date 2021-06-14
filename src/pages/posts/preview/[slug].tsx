@@ -104,17 +104,19 @@ export const getStaticProps: GetStaticProps<PostPreviewProps> = async ctx => {
     {}
   )
 
+  const content = data.content.splice(0, 3)
+
   const post = {
     slug,
     thumbnail: {
       ...data.thumbnail
     },
     title: RichText.asText(data.title),
-    content: RichText.asHtml(data.content.splice(0, 3)),
-    excerpt: RichText.asText(data.content.splice(0, 3)),
-    updatedAt: new Date(last_publication_date).toLocaleDateString('pt-BR', {
+    excerpt: RichText.asText(content),
+    content: RichText.asHtml(content),
+    updatedAt: new Date(last_publication_date).toLocaleDateString('en-UK', {
       day: '2-digit',
-      month: 'long',
+      month: 'numeric',
       year: 'numeric'
     })
   }
